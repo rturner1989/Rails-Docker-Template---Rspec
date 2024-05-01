@@ -106,6 +106,10 @@ GEM
     concurrent-ruby (1.2.3)
     connection_pool (2.4.1)
     crass (1.0.6)
+    database_cleaner-active_record (2.1.0)
+      activerecord (>= 5.a)
+      database_cleaner-core (~> 2.0.0)
+    database_cleaner-core (2.0.1)
     date (3.3.4)
     debug (1.9.2)
       irb (~> 1.10)
@@ -116,6 +120,7 @@ GEM
       railties (>= 4.1.0)
       responders
       warden (~> 1.2.3)
+    diff-lcs (1.5.0)
     dotenv (2.8.1)
     dotenv-rails (2.8.1)
       dotenv (= 2.8.1)
@@ -125,6 +130,11 @@ GEM
     erubi (1.12.0)
     et-orbi (1.2.7)
       tzinfo
+    factory_bot (6.4.2)
+      activesupport (>= 5.0.0)
+    factory_bot_rails (6.4.2)
+      factory_bot (~> 6.4)
+      railties (>= 5.0.0)
     faker (3.2.2)
       i18n (>= 1.8.11, < 2)
     ffi (1.16.3)
@@ -268,6 +278,23 @@ GEM
     rexml (3.2.6)
     rmagick (5.3.0)
       pkg-config (~> 1.4)
+    rspec-core (3.12.2)
+      rspec-support (~> 3.12.0)
+    rspec-expectations (3.12.3)
+      diff-lcs (>= 1.2.0, < 2.0)
+      rspec-support (~> 3.12.0)
+    rspec-mocks (3.12.6)
+      diff-lcs (>= 1.2.0, < 2.0)
+      rspec-support (~> 3.12.0)
+    rspec-rails (6.0.4)
+      actionpack (>= 6.1)
+      activesupport (>= 6.1)
+      railties (>= 6.1)
+      rspec-core (~> 3.12)
+      rspec-expectations (~> 3.12)
+      rspec-mocks (~> 3.12)
+      rspec-support (~> 3.12)
+    rspec-support (3.12.1)
     rubocop (1.57.2)
       json (~> 2.3)
       language_server-protocol (>= 3.17.0)
@@ -369,12 +396,14 @@ PLATFORMS
 DEPENDENCIES
   bootsnap
   byebug
-  capybara
+  capybara (~> 3.40)
   carrierwave (~> 3.0)
+  database_cleaner-active_record
   debug
   devise (~> 4.9)
   dotenv-rails
   error_highlight (>= 0.4.0)
+  factory_bot_rails
   faker
   font-awesome-sass (~> 6.4.2)
   jbuilder
@@ -386,11 +415,12 @@ DEPENDENCIES
   rails_performance
   redis
   rmagick
+  rspec-rails (~> 6.0.0)
   rubocop
   rubocop-performance
   rubocop-rails
   sassc-rails
-  selenium-webdriver
+  selenium-webdriver (~> 4.20.0)
   sidekiq
   sidekiq-scheduler
   sprockets-rails

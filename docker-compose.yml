@@ -30,6 +30,38 @@ services:
     volumes:
       - mysql_data:/var/lib/mysql
 
+  selenium-hub:
+    image: selenium/hub:latest
+    container_name: selenium-hub
+    ports:
+      - "4442:4442"
+      - "4443:4443"
+      - "4444:4444"
+  chrome:
+    image: selenium/node-chrome:latest
+    volumes:
+      - /dev/shm:/dev/shm
+    depends_on:
+      - selenium-hub
+    env_file:
+      - .env
+  edge:
+    image: selenium/node-edge:latest
+    volumes:
+      - /dev/shm:/dev/shm
+    depends_on:
+      - selenium-hub
+    env_file:
+      - .env
+  firefox:
+    image: selenium/node-firefox:latest
+    volumes:
+      - /dev/shm:/dev/shm
+    depends_on:
+      - selenium-hub
+    env_file:
+      - .env
+
   redis:
     image: "redis:latest"
     command: redis-server

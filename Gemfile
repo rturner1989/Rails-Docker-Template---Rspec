@@ -62,6 +62,8 @@ group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem 'byebug'
   gem 'debug', platforms: [:mri, :windows]
+  gem 'factory_bot_rails'
+  gem 'rspec-rails', '~> 6.0.0'
   gem 'rubocop', require: false
   gem 'rubocop-performance', require: false
   gem 'rubocop-rails', require: false
@@ -77,6 +79,7 @@ end
 
 group :test do
   # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
-  gem 'capybara'
-  gem 'selenium-webdriver'
+  gem 'capybara', '~> 3.40'
+  gem 'database_cleaner-active_record'
+  gem 'selenium-webdriver', '~> 4.20.0'
 end
