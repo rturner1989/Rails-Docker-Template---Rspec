@@ -1,0 +1,116 @@
+# The behavior of RuboCop can be controlled via the .rubocop.yml
+# configuration file. It makes it possible to enable/disable
+# certain cops (checks) and to alter their behavior if they accept
+# any parameters. The file can be placed either in your home
+# directory or in some project directory.
+#
+# RuboCop will start looking for the configuration file in the directory
+# where the inspected file is and continue its way up to the root directory.
+#
+# See https://docs.rubocop.org/rubocop/configuration
+
+AllCops:
+  NewCops: enable
+  Exclude:
+    - 'db/**/*'
+    - 'config/**/*'
+    - 'script/**/*'
+    - 'vendor/**/*'
+    - 'bin/{rails,rake}'
+    - 'bin/*'
+    - 'node_modules/**/*'
+    - !ruby/regexp /old_and_unused\.rb$/
+    - 'lib/mogilefs-client/**/*'
+
+# Opinions
+Style/GuardClause:
+  MinBodyLength: 3
+
+Style/EmptyMethod:
+  EnforcedStyle: expanded
+
+Style/WordArray:
+  EnforcedStyle: brackets
+
+Style/SymbolArray:
+  EnforcedStyle: brackets
+
+Style/RegexpLiteral:
+  EnforcedStyle: slashes
+
+Lint/UselessAssignment:
+  Exclude:
+    - 'test/**/*'
+
+Style/AccessorGrouping:
+  EnforcedStyle: separated
+
+# These are probably worth looking at if you need something to do
+Security/Eval:
+  Enabled: false 
+
+Style/OptionalBooleanParameter: 
+  Enabled: false 
+
+Lint/MissingSuper:
+  Enabled: false
+
+Style/HashLikeCase: 
+  Enabled: false
+
+Style/Documentation:
+  Enabled: false
+
+Naming/VariableNumber:
+  Enabled: false
+  EnforcedStyle: snake_case
+
+Style/ExplicitBlockArgument:
+  Enabled: false
+
+Naming/AccessorMethodName:
+  Enabled: false
+
+Naming/PredicateName:
+  Enabled: false
+
+# Disabled for a good reason
+Style/ClassAndModuleChildren:
+  Enabled: false
+
+# There's a difference between good readability and blindly limiting things like line count 
+Metrics/ParameterLists:
+  Enabled: false
+
+Metrics/ClassLength:
+  Enabled: false
+
+Metrics/MethodLength:
+  Enabled: false
+
+Metrics/ModuleLength:
+  Enabled: false
+
+Metrics/AbcSize:
+  Enabled: false
+
+Metrics/PerceivedComplexity:
+  Enabled: false
+
+Metrics/CyclomaticComplexity:
+  Enabled: false
+
+Metrics/BlockLength:
+  Enabled: false
+
+# These oens are technically correct but confusing if you're not a regex wizard,
+# which no-one should be generally in their lives
+Style/RedundantRegexpEscape:
+  Enabled: false 
+
+Style/RedundantRegexpCharacterClass:
+  Enabled: false
+
+# The Searcher
+Style/OpenStructUse:
+  Enabled: false

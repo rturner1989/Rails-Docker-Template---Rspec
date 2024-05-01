@@ -1,0 +1,56 @@
+version: "3.8"
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    volumes:
+      - .:/template
+      - node_modules:/template/node_modules
+    depends_on:
+      - db
+    restart: always
+    tty: true
+    stdin_open: true
+    env_file:
+      - .env
+
+  db:
+    image: mysql:latest
+    environment:
+      MYSQL_ROOT_PASSWORD: "${DB_PASSWORD}"
+      MYSQL_DATABASE: "${DB_DATABASE}"
+      MYSQL_USER: "${DB_USER}"
+      MYSQL_PASSWORD: "${DB_PASSWORD}"
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+
+  redis:
+    image: "redis:latest"
+    command: redis-server
+    ports:
+      - "6379:6379"
+    volumes:
+      - "redis:/data"
+
+  sidekiq:
+    depends_on:
+      - "db"
+      - "redis"
+    build: .
+    command: bundle exec sidekiq
+    volumes:
+      - ".:/template"
+      - "/template/tmp"
+    env_file:
+      - ".env"
+
+volumes:
+  node_modules:
+  redis:
+  mysql_data:
