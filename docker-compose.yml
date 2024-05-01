@@ -12,6 +12,7 @@ services:
       - node_modules:/template/node_modules
     depends_on:
       - db
+      - selenium-hub
     restart: always
     tty: true
     stdin_open: true
@@ -22,9 +23,6 @@ services:
     image: mysql:latest
     environment:
       MYSQL_ROOT_PASSWORD: "${DB_PASSWORD}"
-      MYSQL_DATABASE: "${DB_DATABASE}"
-      MYSQL_USER: "${DB_USER}"
-      MYSQL_PASSWORD: "${DB_PASSWORD}"
     ports:
       - "3306:3306"
     volumes:
