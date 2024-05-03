@@ -10,22 +10,22 @@ RUN curl -sL https://deb.nodesource.com/setup_16.x | bash - && \
 
 # Set the working directory
 # Change this to your app's name
-WORKDIR /template
+WORKDIR /rspec_template
 
 # Install Gems
-COPY Gemfile /template/Gemfile
-COPY Gemfile.lock /template/Gemfile.lock
+COPY Gemfile /rspec_template/Gemfile
+COPY Gemfile.lock /rspec_template/Gemfile.lock
 RUN bundle install
 
 # Install Node dependencies
-COPY package.json yarn.lock /template/
+COPY package.json yarn.lock /rspec_template/
 RUN yarn install
 
 # Add esbuild installation
 RUN yarn global add esbuild
 
 # Copy the rest of the application code
-COPY . /template
+COPY . /rspec_template
 
 # Add a script to be executed every time the container starts.
 COPY entrypoint.sh /usr/bin/
